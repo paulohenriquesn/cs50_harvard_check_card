@@ -9,7 +9,7 @@ long helper(long number){
     if(number>1000000000000){
         return 13;
     }
-    if(number>10){
+    if(number>9){
         return 2;
     }
     return 1;
@@ -18,9 +18,9 @@ long helper(long number){
 long memory_rest[9] = {0,0,0,0,0,0,0,0};
 long card_brand = 0;
 int main(void){
-    long cardNumber = get_long("What's the card number? \n>");
+long cardNumber = get_long("What's the card number? \n>");
    
-   //long cardNumber = 378282246310005;
+  // long cardNumber = 369421438430814;
     /*long counterNumber = log10(cardNumber);
     card_brand[0] = counterNumber / pow(10,counterNumber);
     */
@@ -41,7 +41,7 @@ int main(void){
 
     for(int i=0;i<=16;i++){
   long number = (cardNumber / (numberElevated)) % 10;
-  //printf("z%liz",number);
+  ////printf("z%liz",number);
         if(x<16){
       
                
@@ -58,44 +58,45 @@ int main(void){
         }
     }
     }
-   // printf("\n");
+    //printf("\n");
     long result_multiply_by_two[10] = {0,0,0,0,0,0,0,0};
     for(int i=1;i<9;i++){
-      //  printf(" %li ",memory[i]);
+        //printf(" %li ",memory[i]);
         result_multiply_by_two[i] = (memory[i] *2);
     }
-     // printf("\n");
+     //printf("\n");
       long memory_products[13] = {0,0,0,0,0,0,0,0,0,0,0};
       int counter_product = 0;
           for(int i=1;i<9;i++){
-               // printf(" >%li< ",result_multiply_by_two[i]);
+              // //printf(" >%li< ",result_multiply_by_two[i]);
               if(helper(result_multiply_by_two[i]) == 2){
+                  //printf(" ##[%li]",result_multiply_by_two[i]);
                   memory_products[counter_product] = result_multiply_by_two[i] / 10;
                   counter_product+=1;
                   memory_products[counter_product] = result_multiply_by_two[i] % 10;
                   counter_product+=1;
               }else{
-               //   printf(">%d<",counter_product);
+                 //printf(" #[%li]",result_multiply_by_two[i]);
                   memory_products[counter_product] = result_multiply_by_two[i];
                   counter_product+=1;
               }
     }
-       // printf("\n");
+       //printf("\n");
           long result_product = 0;
-         for(int i=0;i<10;i++){
+         for(int i=0;i<counter_product;i++){
              result_product = result_product + memory_products[i];
     }
-      // printf(" [%li] ", result_product);
- // printf("\n");
+      //printf(" [%li] ", result_product);
+ //printf("\n");
     long result_final = 0;
      for(int i=0;i<8;i++){
          result_final+=memory_rest[i];
-            //printf("_[%li]_ ",memory_rest[i]);
+            ////printf("_[%li]_ ",memory_rest[i]);
     }
     result_final+=result_product;
    // printf("\n %li\n\n",result_final);
     if((result_final % 10) == 0){
-        //printf("(%li)",card_brand);
+        ////printf("(%li)",card_brand);
         if(card_brand / 10 == 4){
           printf("VISA\n");
         }
@@ -103,6 +104,8 @@ int main(void){
              printf("AMEX\n");
         }else if(card_brand == 37) {
             printf("AMEX\n");
+        }else if(card_brand == 36) {
+            printf("INVALID\n");
         }
 
         switch(card_brand){
@@ -116,6 +119,9 @@ int main(void){
              printf("MASTERCARD\n");
             case 55:
              printf("MASTERCARD\n");
+            break;
+            case 56:
+               printf("INVALID\n");
             break;
         }
         
