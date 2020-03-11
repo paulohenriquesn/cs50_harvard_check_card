@@ -3,6 +3,12 @@
 #include <math.h>
 
 long helper(long number){
+    if(number>10000000000000){
+        return 14;
+    }
+    if(number>1000000000000){
+        return 13;
+    }
     if(number>10){
         return 2;
     }
@@ -10,9 +16,20 @@ long helper(long number){
 }
 
 long memory_rest[9] = {0,0,0,0,0,0,0,0};
-long card_brand[2] = {0,0};
+long card_brand = 0;
 int main(void){
     long cardNumber = get_long("What's the card number? \n>");
+   
+   //long cardNumber = 378282246310005;
+    /*long counterNumber = log10(cardNumber);
+    card_brand[0] = counterNumber / pow(10,counterNumber);
+    */
+    card_brand = cardNumber;
+    while(card_brand>=100){
+        card_brand = card_brand/10;
+    }
+
+    if(helper(cardNumber) > 12){
     long memory[9] = {0,0,0,0,0,0,0,0};
     string typecard = "";
     int pointerB = 0;
@@ -24,13 +41,7 @@ int main(void){
 
     for(int i=0;i<=16;i++){
   long number = (cardNumber / (numberElevated)) % 10;
-         if(i == 15){
-            card_brand[0] = number;
-        }
-        if(i == 14){
-            card_brand[1] = number;
-        }
-
+  //printf("z%liz",number);
         if(x<16){
       
                
@@ -82,36 +93,38 @@ int main(void){
             //printf("_[%li]_ ",memory_rest[i]);
     }
     result_final+=result_product;
-   // printf("\n\n\n");
+   // printf("\n %li\n\n",result_final);
     if((result_final % 10) == 0){
-        printf("Number: %li\n",cardNumber);
-        if(card_brand[0] == 4){
-          printf("VISA");
+        //printf("(%li)",card_brand);
+        if(card_brand / 10 == 4){
+          printf("VISA\n");
         }
-        if(card_brand[0] == 3 && card_brand[1] == 4){
-            
-        }else if(card_brand[0] == 3 && card_brand[1] == 7) {
-            printf("AMERICAN EXPRESS");
+        if(card_brand == 34){
+             printf("AMEX\n");
+        }else if(card_brand == 37) {
+            printf("AMEX\n");
         }
-        if(card_brand[0] == 5){
-        switch(card_brand[1]){
-            case 1:
-             printf("MASTERCARD");
-            case 2:
-             printf("MASTERCARD");
-            case 3:
-             printf("MASTERCARD");
-            case 4:
-             printf("MASTERCARD");
-            case 5:
-             printf("MASTERCARD");
+
+        switch(card_brand){
+            case 51:
+             printf("MASTERCARD\n");
+            case 52:
+             printf("MASTERCARD\n");
+            case 53:
+             printf("MASTERCARD\n");
+            case 54:
+             printf("MASTERCARD\n");
+            case 55:
+             printf("MASTERCARD\n");
             break;
         }
-        }
+        
     }else{
-        printf("Number: %li\nINVALID\n",cardNumber);
+        printf("INVALID\n");
     }
-    printf("\n%li",result_final % 10);
+    }else{
+        printf("INVALID\n");
+    }
 
 }
 
